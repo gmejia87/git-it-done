@@ -11,7 +11,9 @@ var getUserRepos = function(user) {
     fetch(apiUrl).then(function(response) {
         //request was successful
         if (response.ok) {
+            console.log(response);
             response.json().then(function(data) {
+                console.log(data);
                 displayRepos(data, user);
             });
         } else {
@@ -43,11 +45,9 @@ var displayRepos = function(repos, searchTerm) {
         repoContainerEl.textContent = "No repositories found.";
         return;
     }
-    console.log(repos);
-    console.log(searchTerm);
-    //clear old content
-    repoContainerEl.textContent = "";
+
     repoSearchTerm.textContent = searchTerm;
+
     //loop over repos
     for (var i = 0; i < repos.length; i++) {
         //format repo name
@@ -78,9 +78,10 @@ var displayRepos = function(repos, searchTerm) {
 
         // append to container
         repoEl.appendChild(statusEl);
+        //append container to the dom
+        repoContainerEl.appendChild(repoEl);
     }
-    //append container to the dom
-    repoContainerEl.appendChild(repoEl);
 };
-  
+
+//event listeners to forms
 userFormEl.addEventListener("submit", formSubmitHandler);
