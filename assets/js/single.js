@@ -1,6 +1,6 @@
+var repoNameEl = document.querySelector("#repo-name");
 var issueContainerEl = document.querySelector("#issues-container");
 var limitWarningEl = document.querySelector("#limit-warning");
-var repoNameEl = document.querySelector("#repo-name");
 
 var getRepoName = function () {
   //grab repo name from url query string
@@ -19,6 +19,7 @@ var getRepoName = function () {
 };
 
 var getRepoIssues = function (repo) {
+  //format the github api url
   var apiUrl = "https://api.github.com/repos/" + repo + "/issues?direction=asc";
 
   //make a get request to url
@@ -50,7 +51,7 @@ var displayIssues = function (issues) {
   for (var i = 0; i < issues.length; i++) {
     //create a link element to take users to the issue on github
     var issueEl = document.createElement("a");
-    issueEl.classList = "list-item flex-row justiy-spae-between align-center";
+    issueEl.classList = "list-item flex-row justify-space-between align-center";
     issueEl.setAttribute("href", issues[i].html_url);
     issueEl.setAttribute("target", "_blank");
 
